@@ -11,9 +11,11 @@ import XCTest
 
 class StormyTests: XCTestCase {
     
+    // Default initializer for testing
+    let currentWeather = Current()
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
@@ -21,9 +23,13 @@ class StormyTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testTimeString() {
+        let timeString = "Nov 9, 2014, 9:13 PM"
+        XCTAssertEqual(timeString, self.currentWeather.currentTime!, "make sure the time string is correctly converted from the unix timestamp")
+    }
+    
+    func testIcon() {
+        XCTAssertNotNil(self.currentWeather.icon, "make sure we got an actual image")
     }
     
     func testPerformanceExample() {

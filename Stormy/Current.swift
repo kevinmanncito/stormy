@@ -18,14 +18,17 @@ class Current {
     var precipProbability: Double
     var summary: String
     var icon: UIImage?
+    var windSpeed: Double
     
     init(weatherDictionary: NSDictionary) {
+        println(weatherDictionary)
         let currentWeather = weatherDictionary["currently"] as NSDictionary
         
         temperature = currentWeather["temperature"] as Int
         humidity = currentWeather["humidity"] as Double
         precipProbability = currentWeather["precipProbability"] as Double
         summary = currentWeather["summary"] as String
+        windSpeed = currentWeather["windSpeed"] as Double
         
         let currentTimeIntVale = currentWeather["time"] as Int
         currentTime = dateStringFromUnixTime(currentTimeIntVale)
@@ -34,10 +37,20 @@ class Current {
         icon = weatherIconFromString(iconString)
     }
     
+    // Default constructor (mostly for testing)
+    init() {
+        self.temperature = 10
+        self.precipProbability = 0
+        self.summary = "Partly Cloudy"
+        self.windSpeed = 5.49
+        self.humidity = 0.4
+        self.currentTime = dateStringFromUnixTime(1415592795)
+        self.icon = weatherIconFromString("partly-cloudy-night")
+    }
+    
     func dateStringFromUnixTime(unixTime: Int) -> String {
         let timeInSeconds = NSTimeInterval(unixTime)
         let weatherDate = NSDate(timeIntervalSince1970: timeInSeconds)
-        
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = .MediumStyle
         dateFormatter.timeStyle = .ShortStyle

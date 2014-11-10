@@ -17,6 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var precipitationLabel: UILabel!
+    @IBOutlet weak var windSpeedLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
@@ -39,7 +40,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         if (CLLocationManager.locationServicesEnabled())
         {
-            println("setting up location services")
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
@@ -75,6 +75,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     self.temperatureLabel.text = "\(currentWeather.temperature)"
                     self.iconView.image = currentWeather.icon
                     self.currentTimeLabel.text = "At \(currentWeather.currentTime!) it is"
+                    self.windSpeedLabel.text = "\(currentWeather.windSpeed)"
                     self.humidityLabel.text = "\(currentWeather.humidity)"
                     self.precipitationLabel.text = "\(currentWeather.precipProbability)"
                     self.summaryLabel.text = "\(currentWeather.summary)"
