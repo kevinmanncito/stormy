@@ -21,7 +21,6 @@ class Current {
     var windSpeed: Double
     
     init(weatherDictionary: NSDictionary) {
-        println(weatherDictionary)
         let currentWeather = weatherDictionary["currently"] as NSDictionary
         
         temperature = currentWeather["temperature"] as Int
